@@ -11,11 +11,11 @@ const restaurantSchema = new mongoose.Schema({
   },
   imgUrl: {
     type: String,
-    required: true
+    required: false
   },
-  Link: {
+  link: {
     type: String,
-    required: true
+    required: false
   },
   owner: {
     type: mongoose.Schema.Types.ObjectId,
