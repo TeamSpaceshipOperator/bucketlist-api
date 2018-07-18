@@ -14,8 +14,8 @@ const requireToken = passport.authenticate('bearer', { session: false })
 const router = express.Router()
 
 // index action -- GET /restaurants
-router.get('/restaurants', (req, res) => {
-  Restaurant.find()
+router.get('/restaurants', requireToken, (req, res) => {
+  Restaurant.find({ owner: req.user.id })
     .then((restaurants) => {
       return restaurants.map((restaurant) => {
         return restaurant.toObject()
