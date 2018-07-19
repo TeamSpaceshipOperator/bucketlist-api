@@ -5,7 +5,8 @@ const passport = require('passport')
 
 const yelp = require('yelp-fusion')
 
-const client = yelp.client(*APIKEY HERE*)
+require('dotenv').config()
+const client = yelp.client(process.env.YELP)
 // passing this as a second argument to `router.<verb>` will make it
 // so that a token MUST be passed for that route to be available
 // it will also set `res.user`
@@ -16,9 +17,10 @@ const router = express.Router()
 
 // Yelp API search
 router.get('/search', requireToken, (req, res) => {
+  console.log('req is ', req)
   client.search({
-    term: req.term,
-    location: req.location
+    term: req.query.search.term,
+    location: req.query.search.location
   })
     .then(search => res.status(200).json({ search: search }))
     .catch(error => {
