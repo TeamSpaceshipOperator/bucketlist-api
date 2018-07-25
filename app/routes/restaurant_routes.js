@@ -44,7 +44,7 @@ router.delete('/restaurants/:id', requireToken, (req, res) => {
   // send back  useful message (and 404) if restaurant isn't found
     .then(handle404)
     .then(restaurant => {
-      // requireOwnership(req, restaurant)
+      requireOwnership(req, restaurant)
       restaurant.remove()
     })
     .then(() => res.sendStatus(204))
