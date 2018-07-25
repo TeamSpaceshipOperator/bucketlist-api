@@ -6,7 +6,7 @@ const passport = require('passport')
 const yelp = require('yelp-fusion')
 
 require('dotenv').config()
-const client = yelp.client(*KEYGOESHERE*)
+const client = yelp.client(process.env.YELP)
 // passing this as a second argument to `router.<verb>` will make it
 // so that a token MUST be passed for that route to be available
 // it will also set `res.user`
